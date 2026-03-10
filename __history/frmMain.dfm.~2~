@@ -1,0 +1,114 @@
+object FormMain: TFormMain
+  Left = 0
+  Top = 0
+  Caption = 'Granja Av'#237'cola - Controle de Lotes'
+  ClientHeight = 550
+  ClientWidth = 900
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  TextHeight = 13
+  object pnlTop: TPanel
+    Left = 0
+    Top = 0
+    Width = 900
+    Height = 50
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 4144959
+    TabOrder = 0
+    object lblTitulo: TLabel
+      Left = 12
+      Top = 14
+      Width = 193
+      Height = 18
+      Caption = 'Controle de Lotes de Aves'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object btnNovoBote: TButton
+      Left = 700
+      Top = 12
+      Width = 90
+      Height = 28
+      Caption = 'Novo Lote'
+      TabOrder = 0
+      OnClick = btnNovoLoteClick
+    end
+    object btnDetalhe: TButton
+      Left = 795
+      Top = 12
+      Width = 90
+      Height = 28
+      Caption = 'Ver Detalhe'
+      TabOrder = 1
+      OnClick = btnDetalheClick
+    end
+    object btnAtualizar: TButton
+      Left = 605
+      Top = 12
+      Width = 90
+      Height = 28
+      Caption = 'Atualizar'
+      TabOrder = 2
+      OnClick = btnAtualizarClick
+    end
+  end
+  object pnlHealth: TPanel
+    Left = 0
+    Top = 50
+    Width = 900
+    Height = 70
+    Align = alTop
+    BevelOuter = bvNone
+    TabOrder = 1
+    object lblHealth: TLabel
+      Left = 12
+      Top = 8
+      Width = 157
+      Height = 13
+      Caption = 'Indicador de Sa'#250'de do Lote:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+  end
+  object gridLotes: TDBGrid
+    Left = 0
+    Top = 120
+    Width = 900
+    Height = 430
+    Align = alClient
+    DataSource = dsLotes
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object dsLotes: TDataSource
+    Left = 40
+    Top = 90
+  end
+  object qLotes: TFDQuery
+    Left = 120
+    Top = 90
+  end
+  object FDConn: TFDConnection
+    Left = 200
+    Top = 90
+  end
+end

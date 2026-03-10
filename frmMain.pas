@@ -1,0 +1,152 @@
+unit frmMain;
+
+interface
+
+uses
+  System.SysUtils, System.Classes,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.DBCtrls,
+  Data.DB,
+  FireDAC.Comp.Client, FireDAC.UI.Intf, FireDAC.VCLUI.Wait,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
+  FireDAC.Phys, FireDAC.Phys.Oracle, FireDAC.Phys.OracleDef,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
+  DAL, Models, LoteHealthIndicator;
+
+type
+  TFormMain = class(TForm)
+    pnlTop:       TPanel;
+    lblTitulo:    TLabel;
+    btnNovoBote:  TButton;
+    btnDetalhe:   TButton;
+    btnAtualizar: TButton;
+    dsLotes:      TDataSource;
+    qLotes:       TFDQuery;
+    gridLotes:    TDBGrid;
+    pnlHealth:    TPanel;
+    lblHealth:    TLabel;
+    FDConn:       TFDConnection;
+    FDPhysOracleDriverLink1: TFDPhysOracleDriverLink;
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure btnDetalheClick(Sender: TObject);
+    procedure btnAtualizarClick(Sender: TObject);
+    procedure btnNovoLoteClick(Sender: TObject);
+  private
+    FDAL:        TGranjaDAL;
+    FIndicador:  TLoteHealthIndicator;
+    procedure CarregarLotes;
+    procedure AtualizarIndicador;
+    function  LoteSelecionadoId: Integer;
+    function  LoteSelecionadoQtdInicial: Integer;
+  end;
+
+var
+  FormMain: TFormMain;
+
+implementation
+
+uses frmDetalhe, frmNovoLote;
+
+{$R *.dfm}
+
+procedure TFormMain.FormCreate(Sender: TObject);
+begin
+  FDConn.DriverName := 'Oracle';
+  FDConn.Params.Values['Database']  := 'LOCALHOST:1521/XEPDB1';
+  FDConn.Params.Values['User_Name'] := 'granja_user';
+  FDConn.Params.Values['Password']  := 'granja_pass';
+  FDConn.Connected := True;
+  FDAL := TGranjaDAL.Create(FDConn);
+  FIndicador := TLoteHealthIndicator.Create(pnlHealth);
+  FIndicador.Parent := pnlHealth;
+  FIndicador.Left   := 4;
+  FIndicador.Top    := 4;
+  dsLotes.DataSet      := qLotes;
+  gridLotes.DataSource := dsLotes;
+  CarregarLotes;
+end;
+
+procedure TFormMain.FormDestroy(Sender: TObject);
+begin
+  FDAL.Free;
+end;
+
+procedure TFormMain.CarregarLotes;
+begin
+  qLotes.Close;
+  FDAL.ListarLotes(qLotes);
+  AtualizarIndicador;
+end;
+
+procedure TFormMain.AtualizarIndicador;
+begin
+  if FIndicador = nil then Exit;
+  if qLotes.IsEmpty then
+  begin
+    FIndicador.Mortalidade := -1;
+    Exit;
+  end;
+  FIndicador.Mortalidade := qLotes.FieldByName('PERC_MORTALIDADE').AsFloat;
+  FIndicador.LoteDesc    := qLotes.FieldByName('DESCRICAO').AsString;
+end;
+
+function TFormMain.LoteSelecionadoId: Integer;
+begin
+  if qLotes.IsEmpty then
+    Result := 0
+  else
+    Result := qLotes.FieldByName('ID_LOTE').AsInteger;
+end;
+
+function TFormMain.LoteSelecionadoQtdInicial: Integer;
+begin
+  if qLotes.IsEmpty then
+    Result := 0
+  else
+    Result := qLotes.FieldByName('QUANTIDADE_INICIAL').AsInteger;
+end;
+
+procedure TFormMain.btnAtualizarClick(Sender: TObject);
+begin
+  CarregarLotes;
+end;
+
+procedure TFormMain.btnDetalheClick(Sender: TObject);
+var
+  Frm: TFormDetalhe;
+begin
+  if LoteSelecionadoId = 0 then
+  begin
+    ShowMessage('Selecione um lote.');
+    Exit;
+  end;
+
+  Frm := TFormDetalhe.Create(nil);
+  try
+    Frm.Init(FDConn, FDAL, LoteSelecionadoId, LoteSelecionadoQtdInicial,
+             qLotes.FieldByName('DESCRICAO').AsString);
+    Frm.ShowModal;
+    CarregarLotes;
+  finally
+    Frm.Free;
+  end;
+end;
+
+procedure TFormMain.btnNovoLoteClick(Sender: TObject);
+var
+  Frm: TFormNovoLote;
+begin
+  Frm := TFormNovoLote.Create(nil);
+  try
+    Frm.Init(FDConn);
+    if Frm.ShowModal = mrOk then
+      CarregarLotes;
+  finally
+    Frm.Free;
+  end;
+end;
+
+end.

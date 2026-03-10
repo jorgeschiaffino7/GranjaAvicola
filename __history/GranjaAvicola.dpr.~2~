@@ -1,0 +1,19 @@
+program GranjaAvicola;
+
+uses
+  Vcl.Forms,
+  frmMain in 'frmMain.pas' {Form1},
+  DAL in '..\..\..\..\..\..\Downloads\files\DAL.pas',
+  Models in '..\..\..\..\..\..\Downloads\files\Models.pas',
+  LoteHealthIndicator in '..\..\..\..\..\..\Downloads\files\LoteHealthIndicator.pas',
+  frmDetalhe in '..\..\..\..\..\..\Downloads\files\frmDetalhe.pas',
+  frmNovoLote in '..\..\..\..\..\..\Downloads\files\frmNovoLote.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

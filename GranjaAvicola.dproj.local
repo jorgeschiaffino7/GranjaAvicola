@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2026/03/09 20:45:38.000.317,=C:\Users\jorge\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2026/03/09 20:47:46.000.849,C:\Users\jorge\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\jorge\OneDrive\Documentos\Embarcadero\Studio\Projects\GranjaAvicola\frmMain.dfm</Transaction>
+    <Transaction>2026/03/09 20:47:46.000.849,C:\Users\jorge\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\jorge\OneDrive\Documentos\Embarcadero\Studio\Projects\GranjaAvicola\frmMain.pas</Transaction>
+    <Transaction>2026/03/09 20:48:03.000.866,C:\Users\jorge\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\jorge\OneDrive\Documentos\Embarcadero\Studio\Projects\GranjaAvicola\GranjaAvicola.dproj</Transaction>
+    <Transaction>2026/03/09 20:56:37.000.278,=C:\Users\jorge\Downloads\files\DAL.pas</Transaction>
+    <Transaction>2026/03/09 20:58:13.000.759,=C:\Users\jorge\Downloads\files\Models.pas</Transaction>
+    <Transaction>2026/03/09 20:58:32.000.864,=C:\Users\jorge\Downloads\files\LoteHealthIndicator.pas</Transaction>
+    <Transaction>2026/03/09 20:59:06.000.082,=C:\Users\jorge\Downloads\files\frmDetalhe.pas</Transaction>
+    <Transaction>2026/03/09 21:00:25.000.089,=C:\Users\jorge\Downloads\files\frmNovoLote.pas</Transaction>
+    <Transaction>2026/03/10 16:57:32.000.045,C:\Users\jorge\Downloads\files\DAL.pas=</Transaction>
+    <Transaction>2026/03/10 16:57:40.000.265,C:\Users\jorge\Downloads\files\frmDetalhe.pas=</Transaction>
+    <Transaction>2026/03/10 16:57:47.000.024,C:\Users\jorge\Downloads\files\frmNovoLote.pas=</Transaction>
+    <Transaction>2026/03/10 16:57:52.000.812,C:\Users\jorge\Downloads\files\LoteHealthIndicator.pas=</Transaction>
+    <Transaction>2026/03/10 16:57:56.000.878,C:\Users\jorge\Downloads\files\Models.pas=</Transaction>
+    <Transaction>2026/03/10 16:58:11.000.527,=C:\Users\jorge\OneDrive\Documentos\Embarcadero\Studio\Projects\GranjaAvicola\DAL.pas</Transaction>
+    <Transaction>2026/03/10 16:58:21.000.273,=C:\Users\jorge\OneDrive\Documentos\Embarcadero\Studio\Projects\GranjaAvicola\Models.pas</Transaction>
+    <Transaction>2026/03/10 16:58:30.000.637,=C:\Users\jorge\OneDrive\Documentos\Embarcadero\Studio\Projects\GranjaAvicola\LoteHealthIndicator.pas</Transaction>
+    <Transaction>2026/03/10 16:58:42.000.538,=C:\Users\jorge\OneDrive\Documentos\Embarcadero\Studio\Projects\GranjaAvicola\frmDetalhe.pas</Transaction>
+    <Transaction>2026/03/10 16:58:51.000.732,=C:\Users\jorge\OneDrive\Documentos\Embarcadero\Studio\Projects\GranjaAvicola\frmNovoLote.pas</Transaction>
+    <Transaction>2026/03/10 17:00:58.000.774,C:\Users\jorge\OneDrive\Documentos\Embarcadero\Studio\Projects\GranjaAvicola\DAL.pas=</Transaction>
+    <Transaction>2026/03/10 17:01:39.000.442,=C:\Users\jorge\OneDrive\Documentos\Embarcadero\Studio\Projects\GranjaAvicola\DAL.pas</Transaction>
+  </Transactions>
+</BorlandProject>
